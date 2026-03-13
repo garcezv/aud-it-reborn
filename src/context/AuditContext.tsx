@@ -125,7 +125,7 @@ export const AuditProvider = ({ children }: { children: React.ReactNode }) => {
   const buildRound = (index: number) => {
     const frequency = protocolFrequencySource[index % protocolFrequencySource.length];
     const visual = visualForMode(mode, index);
-    const correctTarget = randomPick<["top", "bottom", "no_sound"]>(["top", "bottom", "no_sound"]);
+    const correctTarget = randomPick<"top" | "bottom" | "no_sound">(["top", "bottom", "no_sound"]);
     setCurrentRound({ frequency, visual, correctTarget });
   };
 
