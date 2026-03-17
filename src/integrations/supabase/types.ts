@@ -14,7 +14,295 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      calibration_setting_values: {
+        Row: {
+          calibration_setting_id: string
+          created_at: string
+          expected_lv: number
+          frequency: number
+          id: string
+          measured_lv_l: number
+          measured_lv_r: number
+          presentation_lv: number
+          updated_at: string
+        }
+        Insert: {
+          calibration_setting_id: string
+          created_at?: string
+          expected_lv?: number
+          frequency: number
+          id?: string
+          measured_lv_l?: number
+          measured_lv_r?: number
+          presentation_lv?: number
+          updated_at?: string
+        }
+        Update: {
+          calibration_setting_id?: string
+          created_at?: string
+          expected_lv?: number
+          frequency?: number
+          id?: string
+          measured_lv_l?: number
+          measured_lv_r?: number
+          presentation_lv?: number
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "calibration_setting_values_calibration_setting_id_fkey"
+            columns: ["calibration_setting_id"]
+            isOneToOne: false
+            referencedRelation: "calibration_settings"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      calibration_settings: {
+        Row: {
+          created_at: string
+          id: string
+          name: string
+          timestamp: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          name: string
+          timestamp?: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          name?: string
+          timestamp?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      global_settings: {
+        Row: {
+          active_calibration_setting_id: string | null
+          created_at: string
+          current_patient_profile_id: string | null
+          current_test_count: number
+          id: string
+          is_testing_both: boolean
+          is_testing_left: boolean
+          test_frequency_sequence: Json
+          test_language: string
+          total_test_count: number
+          updated_at: string
+        }
+        Insert: {
+          active_calibration_setting_id?: string | null
+          created_at?: string
+          current_patient_profile_id?: string | null
+          current_test_count?: number
+          id?: string
+          is_testing_both?: boolean
+          is_testing_left?: boolean
+          test_frequency_sequence?: Json
+          test_language?: string
+          total_test_count?: number
+          updated_at?: string
+        }
+        Update: {
+          active_calibration_setting_id?: string | null
+          created_at?: string
+          current_patient_profile_id?: string | null
+          current_test_count?: number
+          id?: string
+          is_testing_both?: boolean
+          is_testing_left?: boolean
+          test_frequency_sequence?: Json
+          test_language?: string
+          total_test_count?: number
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "global_settings_active_calibration_setting_id_fkey"
+            columns: ["active_calibration_setting_id"]
+            isOneToOne: false
+            referencedRelation: "calibration_settings"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "global_settings_current_patient_profile_id_fkey"
+            columns: ["current_patient_profile_id"]
+            isOneToOne: false
+            referencedRelation: "patient_profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      patient_profile_values: {
+        Row: {
+          created_at: string
+          duration_seconds_l: number | null
+          duration_seconds_r: number | null
+          end_time_l: string | null
+          end_time_r: string | null
+          frequency: number
+          id: string
+          no_sound_correct_l: number
+          no_sound_correct_r: number
+          no_sound_count_l: number
+          no_sound_count_r: number
+          patient_profile_id: string
+          responses_l: Json
+          responses_r: Json
+          results_l: Json
+          results_r: Json
+          spam_count_l: number
+          spam_count_r: number
+          start_time_l: string | null
+          start_time_r: string | null
+          threshold_l: number | null
+          threshold_r: number | null
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          duration_seconds_l?: number | null
+          duration_seconds_r?: number | null
+          end_time_l?: string | null
+          end_time_r?: string | null
+          frequency: number
+          id?: string
+          no_sound_correct_l?: number
+          no_sound_correct_r?: number
+          no_sound_count_l?: number
+          no_sound_count_r?: number
+          patient_profile_id: string
+          responses_l?: Json
+          responses_r?: Json
+          results_l?: Json
+          results_r?: Json
+          spam_count_l?: number
+          spam_count_r?: number
+          start_time_l?: string | null
+          start_time_r?: string | null
+          threshold_l?: number | null
+          threshold_r?: number | null
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          duration_seconds_l?: number | null
+          duration_seconds_r?: number | null
+          end_time_l?: string | null
+          end_time_r?: string | null
+          frequency?: number
+          id?: string
+          no_sound_correct_l?: number
+          no_sound_correct_r?: number
+          no_sound_count_l?: number
+          no_sound_count_r?: number
+          patient_profile_id?: string
+          responses_l?: Json
+          responses_r?: Json
+          results_l?: Json
+          results_r?: Json
+          spam_count_l?: number
+          spam_count_r?: number
+          start_time_l?: string | null
+          start_time_r?: string | null
+          threshold_l?: number | null
+          threshold_r?: number | null
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "patient_profile_values_patient_profile_id_fkey"
+            columns: ["patient_profile_id"]
+            isOneToOne: false
+            referencedRelation: "patient_profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      patient_profiles: {
+        Row: {
+          created_at: string
+          duration_seconds: number | null
+          ear_order: string
+          end_time: string | null
+          frequency_order: Json
+          id: string
+          is_adult: boolean
+          is_practice: boolean
+          name: string
+          patient_group: string
+          timestamp: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          duration_seconds?: number | null
+          ear_order?: string
+          end_time?: string | null
+          frequency_order?: Json
+          id?: string
+          is_adult?: boolean
+          is_practice?: boolean
+          name: string
+          patient_group?: string
+          timestamp?: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          duration_seconds?: number | null
+          ear_order?: string
+          end_time?: string | null
+          frequency_order?: Json
+          id?: string
+          is_adult?: boolean
+          is_practice?: boolean
+          name?: string
+          patient_group?: string
+          timestamp?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      test_settings: {
+        Row: {
+          created_at: string
+          frequency_sequence: Json
+          id: string
+          is_test_both: boolean
+          is_test_left_first: boolean
+          name: string
+          timestamp: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          frequency_sequence?: Json
+          id?: string
+          is_test_both?: boolean
+          is_test_left_first?: boolean
+          name: string
+          timestamp?: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          frequency_sequence?: Json
+          id?: string
+          is_test_both?: boolean
+          is_test_left_first?: boolean
+          name?: string
+          timestamp?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
