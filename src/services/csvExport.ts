@@ -9,6 +9,7 @@ export function generateCSV(profiles: PatientProfileWithValues[]): string {
     "Is Adult",
     "Is Practice",
     "Ear Order",
+    "Frequency Order",
     "Start Time",
     "End Time",
     "Duration (s)",
@@ -29,7 +30,7 @@ export function generateCSV(profiles: PatientProfileWithValues[]): string {
 
   for (const profile of profiles) {
     const frequencyOrder = (profile.frequency_order as number[]) ?? [];
-    const freqStr = frequencyOrder.join(";");
+    const freqOrderStr = frequencyOrder.join(";");
 
     for (const val of profile.values) {
       const thresholdL = val.threshold_l === -1 ? "NR" : String(val.threshold_l);
@@ -41,6 +42,7 @@ export function generateCSV(profiles: PatientProfileWithValues[]): string {
         profile.is_adult ? "Adult" : "Children",
         profile.is_practice ? "Practice" : "Test",
         profile.ear_order,
+        freqOrderStr,
         profile.timestamp,
         profile.end_time ?? "",
         String(profile.duration_seconds ?? 0),
